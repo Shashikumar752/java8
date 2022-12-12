@@ -32,14 +32,14 @@ public class StudentDB {
                 .add(new Student(RandomStringUtils.randomAlphabetic(5), random.nextInt(3),
                         random.nextInt(50), random.nextDouble() % 5, gender.get(random.nextInt(1)),
                         activitiesList.subList(random.nextInt(2), random.nextInt(5) + 2)));
-        IntStream.rangeClosed(0, 1).forEach(c2);
+        // IntStream.rangeClosed(0, 1).forEach(c2.andThen(c3));
 
         IntConsumer c3 = (i) -> studentList.add(new Student(RandomStringUtils.randomAlphabetic(5),
                 random.nextInt(3), random.nextInt(50), random.nextDouble() % 5,
                 gender.get(random.nextInt(1)), activities));
 
-        IntStream.rangeClosed(0, 1).parallel().forEach(c3);
-
+        // IntStream.rangeClosed(0, 1).parallel().forEach(c3);
+        IntStream.rangeClosed(0, 1).forEach(c2.andThen(c3));
         return studentList;
     }
 
