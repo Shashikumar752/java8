@@ -10,17 +10,23 @@ import org.apache.commons.lang3.RandomStringUtils;
 import com.shashi.lambda.beans.Student;
 
 public class StudentDB {
+    public static final List<String> activitiesList = Arrays.asList("Cycling", "Rowing", "Reading",
+            "Writing", "cooking", "Playing", "Teaching", "Learning");
+
+    public static final List<String> gender = Arrays.asList("Male", "Female");
+
+    public static List<Student> addStudent() {
+        List<Student> sList = createStudents();
+        Student s1 = new Student("Shashi", 4, 33, 2, "AMLE", activitiesList.subList(2, 4));
+        Student s2 = new Student("Shashi", 4, 33, 2, "AMLE", activitiesList.subList(2, 5));
+        sList.add(s2);
+        sList.add(s1);
+        return sList;
+    }
 
     public static List<Student> createStudents() {
 
         Random random = new Random();
-        List<String> gender = Arrays.asList("Male", "Female");
-
-        // imperative way of creating List of String
-        List<String> activitiesList = Arrays.asList("Cycling", "Rowing", "Reading", "Writing",
-                "cooking", "Playing", "Teaching", "Learning");
-
-        // declarative way of generating the List<String>
         List<String> activities = new ArrayList<>();
         IntConsumer c1 = (i) -> {
             activities.add(RandomStringUtils.randomAlphabetic(5));
