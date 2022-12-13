@@ -21,6 +21,16 @@ public class SupplierFI {
         return sList;
     };
 
+    public static Supplier<List<Student>> supp1 = () -> {
+        List<Student> sList = new ArrayList<>();
+        Student s1 = new Student("ShashiKumar", 4, 33, 2, "AMLE",
+                StudentDB.activitiesList.subList(2, 4));
+        Student s2 = new Student("Ravi", 4, 33, 2, "AMLE", StudentDB.activitiesList.subList(2, 5));
+        sList.add(s2);
+        sList.add(s1);
+        return sList;
+    };
+
     public static void main(String[] args) {
         System.out.println(supp.get());
     }
