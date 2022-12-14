@@ -10,6 +10,8 @@ import org.apache.commons.lang3.RandomStringUtils;
 import com.shashi.lambda.beans.Student;
 
 public class StudentDB {
+    private StudentDB() {}
+
     public static final List<String> activitiesList = Arrays.asList("Cycling", "Rowing", "Reading",
             "Writing", "cooking", "Playing", "Teaching", "Learning");
 
@@ -17,8 +19,8 @@ public class StudentDB {
 
     public static List<Student> addStudent() {
         List<Student> sList = createStudents();
-        Student s1 = new Student("Shashi", 4, 33, 2, "AMLE", activitiesList.subList(2, 4));
-        Student s2 = new Student("Shashi", 4, 33, 2, "AMLE", activitiesList.subList(2, 5));
+        Student s1 = new Student("Shashi", 4, 33, 2, "MALE", activitiesList.subList(2, 4));
+        Student s2 = new Student("Shashi", 4, 33, 2, "MALE", activitiesList.subList(2, 5));
         sList.add(s2);
         sList.add(s1);
         return sList;

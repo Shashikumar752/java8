@@ -7,19 +7,26 @@ import com.shashi.lambda.dao.StudentDB;
 
 public class ComparatorIvsD {
 
-    public static Comparator<Student> cD2 = (s5, s6) -> {
+    public static final Comparator<Student> cD2 = (s5, s6) -> {
         return ((Integer) s5.getAge()).compareTo(s6.getAge());
     };
 
-    public static Comparator<Student> cD1 =
-            (s5, s6) -> (s5.getAge() > s6.getAge()) ? 1 : ((s5.getAge() == s6.getAge()) ? 0 : -1);
+    public static final Comparator<Student> cD1 = (s5, s6) -> {
+        if (s5.getAge() > s6.getAge()) {
+            return 1;
+        }
+        return (s5.getAge() == s6.getAge()) ? 0 : -1;
+    };
 
     public static void main(String[] args) {
 
         Comparator<Student> cI = new Comparator<Student>() {
             @Override
-            public int compare(Student s1, Student s2) {
-                return (s1.getAge() > s2.getAge()) ? 1 : ((s1.getAge() == s2.getAge()) ? 0 : -1);
+            public int compare(Student s5, Student s6) {
+                if (s5.getAge() > s6.getAge()) {
+                    return 1;
+                }
+                return (s5.getAge() == s6.getAge()) ? 0 : -1;
             }
         };
 

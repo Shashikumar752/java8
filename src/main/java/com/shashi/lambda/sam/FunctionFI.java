@@ -17,7 +17,7 @@ import com.shashi.lambda.dao.StudentDB;
 
 public class FunctionFI {
 
-    public static Function<List<Student>, Map<String, Double>> f = (sList) -> {
+    public static final Function<List<Student>, Map<String, Double>> f = (sList) -> {
         Map<String, Double> mapOfNameAndGpa = new HashMap<>();
         sList.forEach((s) -> {
             if (mapOfNameAndGpa.get(s.getName()) == null) {
@@ -27,7 +27,7 @@ public class FunctionFI {
         return mapOfNameAndGpa;
     };
 
-    public static Function<List<Student>, List<Student>> fFilter = (sList) -> {
+    public static final Function<List<Student>, List<Student>> fFilter = (sList) -> {
         List<Student> sListCopy = new ArrayList<Student>(sList);
         sList.forEach((s) -> {
             if (!(PredicateFI.sP.or(PredicateFI.sPr).test(s))) {
@@ -37,10 +37,10 @@ public class FunctionFI {
         return sListCopy;
     };
 
-    public static BiFunction<List<Student>, Predicate<Student>, List<Student>> bifFilter =
+    public static final BiFunction<List<Student>, Predicate<Student>, List<Student>> bifFilter =
             (sList, pS) -> {
-                List<Student> sListCopy = new ArrayList<Student>(sList);
-                sList.forEach((s) -> {
+                List<Student> sListCopy = new ArrayList<>(sList);
+                sList.forEach(s -> {
                     if (!(pS.test(s))) {
                         sListCopy.remove(s);
                     }
@@ -48,9 +48,9 @@ public class FunctionFI {
                 return sListCopy;
             };
     // Implemetation is same as fFilter as input and output is of same type
-    public static UnaryOperator<List<Student>> uoF = (sList) -> {
-        List<Student> sListCopy = new ArrayList<Student>(sList);
-        sList.forEach((s) -> {
+    public static final UnaryOperator<List<Student>> uoF = sList -> {
+        List<Student> sListCopy = new ArrayList<>(sList);
+        sList.forEach(s -> {
             if (!(PredicateFI.sP.or(PredicateFI.sPr).test(s))) {
                 sListCopy.remove(s);
             }
@@ -59,10 +59,8 @@ public class FunctionFI {
     };
 
     // Implemetation is same as fFilter as input and output is of same type
-    public static BinaryOperator<List<Student>> boF = (sList, asList) -> {
-        // List<Student> sListCopy = new ArrayList<Student>(sList);
+    public static final BinaryOperator<List<Student>> boF = (sList, asList) -> {
         sList.addAll(asList);
-
         return sList;
     };
 
